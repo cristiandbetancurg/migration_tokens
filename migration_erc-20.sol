@@ -13,6 +13,8 @@ contract RFKJMigration is ERC20 {
     }
 
     function migrateRFKJToBOBBY(uint256 amount) public {
+        require(ERC20(RFKJAddress).balanceOf(msg.sender) >= amount, "Insufficient RFKJ balance");
+
       
         // Transferir tokens $RFKJ al contrato
         ERC20(RFKJAddress).transferFrom(msg.sender, address(this), amount);
