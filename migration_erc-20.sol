@@ -16,6 +16,9 @@ contract RFKJMigration is ERC20 {
         require(ERC20(RFKJAddress).balanceOf(msg.sender) >= amount, "Insufficient RFKJ balance");
 
       
+        // Quemar tokens $RFKJ transferidos
+        ERC20(RFKJAddress).burn(amount);
+
         // Transferir tokens $RFKJ al contrato
         ERC20(RFKJAddress).transferFrom(msg.sender, address(this), amount);
 
